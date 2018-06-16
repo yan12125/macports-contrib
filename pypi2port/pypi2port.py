@@ -591,8 +591,17 @@ def create_portfile(dict, file_name, dict2):
 
 		python_vers = dict['requires_python']
 		if python_vers:
-			file.write('python.versions     27 {0}\n\n'.format(
-					   dict['requires_python']))
+			# reference: check_requires_python() in pip
+			from packaging.specifiers import SpecifierSet
+			spec = SpecifierSet(python_vers)
+			feasible_python_versions = []
+			for py_ver in ('27', '35', '36'):
+				command = ['port', '-q', 'info', '--version', 'python' + py_ver]
+				port_ver = subprocess.check_output(command, stderr=subprocess.STDOUT).decode('ascii').strip()
+				if port_ver in spec:
+					feasible_python_versions.append(py_ver)
+			file.write('python.versions     {0}\n\n'.format(
+					   ' '.join(feasible_python_versions)))
 		else:
 			file.write('python.versions     27 37\n\n')
 
