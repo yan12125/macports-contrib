@@ -292,7 +292,7 @@ def checksums(pkg_name, pkg_version):
 			for chk in ['rmd160', 'sha256']:
 				command = "openssl " + chk + " " + file_name
 				command = command.split()
-				val = str(subprocess.check_output(command, stderr=subprocess.STDOUT))
+				val = subprocess.check_output(command, stderr=subprocess.STDOUT).decode('ascii')
 				val = val.split('=')[1][1:-1]
 				checksums[chk] = val
 			checksums['size'] = os.path.getsize(file_name)
