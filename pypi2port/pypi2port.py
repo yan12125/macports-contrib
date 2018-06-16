@@ -478,7 +478,7 @@ def create_portfile(dict, file_name, dict2):
 		file.write('PortSystem          1.0\n')
 		file.write('PortGroup           python 1.0\n\n')
 
-		file.write('name                py-{0}\n'.format(dict['name']))
+		file.write('name                py-{0}\n'.format(dict['name'].lower()))
 		file.write('version             {0}\n'.format(dict['version']))
 
 		file.write('platforms           darwin\n')
