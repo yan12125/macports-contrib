@@ -595,7 +595,7 @@ def create_portfile(dict, file_name, dict2):
 			from packaging.specifiers import SpecifierSet
 			spec = SpecifierSet(python_vers)
 			feasible_python_versions = []
-			for py_ver in ('27', '35', '36'):
+			for py_ver in ('27', '35', '36', '37'):
 				command = ['port', '-q', 'info', '--version', 'python' + py_ver]
 				port_ver = subprocess.check_output(command, stderr=subprocess.STDOUT).decode('ascii').strip()
 				if port_ver in spec:
