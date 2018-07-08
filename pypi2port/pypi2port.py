@@ -487,9 +487,9 @@ def create_portfile(dict, file_name, dict2):
 		file.write('license             {0}\n'.format(license))
 
 		if dict['maintainer']:
-			maintainers = ' '.join(dict['maintainer'])
-			if not maintainers == "UNKNOWN":
-				file.write('maintainers         {0}\n\n'.format(maintainers))
+			maintainer = dict['maintainer']
+			if not maintainer == "UNKNOWN":
+				file.write('maintainers         {0}\n\n'.format(maintainer))
 			else:
 				file.write('maintainers         {0}\n\n'.format(
 						   os.getenv('maintainer', 'nomaintainer')))
